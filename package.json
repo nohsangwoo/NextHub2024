@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "nodemon --watch server.ts --watch src --exec 'node --loader ts-node/esm server.ts'",
+    "dev": "nodemon --watch server.ts --watch src --exec 'node --loader ts-node/esm --experimental-specifier-resolution=node server.ts'",
     "build": "next build",
     "start": "NODE_ENV=production node --loader ts-node/esm server.ts",
     "lint": "next lint"

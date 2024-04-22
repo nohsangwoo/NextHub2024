@@ -1,13 +1,8 @@
 import express from 'express'
 import next from 'next'
-// import test from './src/test'
+import test from './src/test'
 
-// const express = require('express')
-// const next = require('next')
-// const test = require('./src/test')
-
-// import { ApolloServer } from 'apollo-server-express'
-// import { resolvers, typeDefs } from './schema'
+import { ApolloServer } from 'apollo-server-express'
 
 // 스키마와 리졸버 병합
 
@@ -21,7 +16,6 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev, dir: './' })
 const handle = app.getRequestHandler()
 
-// test()
 app.prepare().then(() => {
   const server = express()
 

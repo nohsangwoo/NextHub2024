@@ -14,13 +14,15 @@
     "jsx": "preserve",
     "incremental": true,
     "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
     "plugins": [
       {
         "name": "next"
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@/test/*": ["./src/test/*"]
     }
   },
   "include": [
