@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { Application } from 'express'
 import next from 'next'
 
 import { ApolloServer } from 'apollo-server-express'
@@ -15,9 +15,10 @@ const apolloServer = new ApolloServer({
 })
 
 app.prepare().then(async () => {
-  const server = express()
+  const server: Application = express()
 
   await apolloServer.start() // Apollo 서버 시작하기
+  // @ts-ignore
   apolloServer.applyMiddleware({ app: server }) // middleware 적용은 서버 시작 후
 
   server.get('/expresstest', (req, res) => {
