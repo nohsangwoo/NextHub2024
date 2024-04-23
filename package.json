@@ -4,8 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "nodemon --exec 'npx swc-node -r tsconfig-paths/register' server.ts",
-    "dev2": "nodemon --watch server.ts --watch src --exec 'node --loader ts-node/esm --experimental-specifier-resolution=node server.ts'",
-    "dev3": "nodemon --exec 'esr' server.ts",
     "build": "next build",
     "start": "NODE_ENV=production node --loader ts-node/esm server.ts",
     "lint": "next lint",
