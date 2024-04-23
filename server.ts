@@ -2,8 +2,7 @@ import express from 'express'
 import next from 'next'
 
 import { ApolloServer } from 'apollo-server-express'
-import { resolvers, test, typeDefs } from './src/graphql/schema'
-test()
+import { schema } from './src/graphql/schema'
 
 const port = parseInt(process.env.PORT as string, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
@@ -12,8 +11,7 @@ const handle = app.getRequestHandler()
 
 const apolloServer = new ApolloServer({
   cache: 'bounded',
-  resolvers: resolvers,
-  typeDefs: typeDefs,
+  schema,
 })
 
 app.prepare().then(async () => {
