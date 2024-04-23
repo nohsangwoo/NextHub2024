@@ -1,15 +1,9 @@
 import express from 'express'
 import next from 'next'
-import test from './src/test'
+import { resolvers, test, typeDefs } from './src/graphqlSchema'
 
 import { ApolloServer } from 'apollo-server-express'
-
-// 스키마와 리졸버 병합
-
-// const apolloServer = new ApolloServer({
-//   typeDefs,
-//   resolvers,
-// })
+test()
 
 const port = parseInt(process.env.PORT as string, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'

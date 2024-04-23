@@ -22,7 +22,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@/test/*": ["./src/test/*"]
+      // "@/test/*": ["./src/test/*"],
+      "@/graphql/*": ["./src/graphql/*"]
     }
   },
   "include": [
@@ -31,7 +32,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "server.ts",
-    "graphql/**/*.ts",
+    "src/graphql/**/*.ts",
     "src/**/*"
   ],
   "exclude": ["node_modules"]
