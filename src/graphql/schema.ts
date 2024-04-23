@@ -16,6 +16,6 @@ export const resolvers2 = mergeResolvers([dogByNameResolvers])
 export const typeDefs2 = mergeTypeDefs([dogByNameTypeDefs, extraTypeDefs])
 
 export const schema = makeExecutableSchema({
-  resolvers: resolvers2,
-  typeDefs: typeDefs2,
+  resolvers,
+  typeDefs,
 })

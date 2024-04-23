@@ -113,10 +113,16 @@ export enum Main_Content_Type_Enum {
 export type Query = {
   __typename?: 'Query';
   dogByName?: Maybe<DogResult>;
+  mutationDogByName?: Maybe<DogResult>;
 };
 
 
 export type QueryDogByNameArgs = {
+  name: Scalars['String']['input'];
+};
+
+
+export type QueryMutationDogByNameArgs = {
   name: Scalars['String']['input'];
 };
 
@@ -178,10 +184,34 @@ export type DogByNameQueryVariables = Exact<{
 
 export type DogByNameQuery = { __typename?: 'Query', dogByName?: { __typename?: 'DogResult', name: string, breed: string, ageInWeeks: number, image: string, sex: string, description: Array<string>, color: string, attributes: Array<{ __typename?: 'DogAttribute', key: string, value: string }> } | null };
 
+export type MutationDogByNameQueryVariables = Exact<{
+  name: Scalars['String']['input'];
+}>;
+
+
+export type MutationDogByNameQuery = { __typename?: 'Query', mutationDogByName?: { __typename?: 'DogResult', name: string, breed: string, ageInWeeks: number, image: string, sex: string, description: Array<string>, color: string, attributes: Array<{ __typename?: 'DogAttribute', key: string, value: string }> } | null };
+
 
 export const DogByNameDocument = gql`
     query dogByName($name: String!) {
   dogByName(name: $name) {
+    name
+    breed
+    ageInWeeks
+    image
+    sex
+    description
+    color
+    attributes {
+      key
+      value
+    }
+  }
+}
+    `;
+export const MutationDogByNameDocument = gql`
+    query mutationDogByName($name: String!) {
+  mutationDogByName(name: $name) {
     name
     breed
     ageInWeeks
@@ -206,6 +236,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
   return {
     dogByName(variables: DogByNameQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<DogByNameQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<DogByNameQuery>(DogByNameDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'dogByName', 'query', variables);
+    },
+    mutationDogByName(variables: MutationDogByNameQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<MutationDogByNameQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MutationDogByNameQuery>(MutationDogByNameDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'mutationDogByName', 'query', variables);
     }
   };
 }
