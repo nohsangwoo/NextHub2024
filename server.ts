@@ -1,15 +1,8 @@
 import express from 'express'
 import next from 'next'
-import {
-  resolvers,
-  resolvers2,
-  schema,
-  test,
-  typeDefs,
-  typeDefs2,
-} from './src/graphqlSchema'
 
 import { ApolloServer } from 'apollo-server-express'
+import { resolvers, test, typeDefs } from './src/graphql/schema'
 test()
 
 const port = parseInt(process.env.PORT as string, 10) || 3000
@@ -19,7 +12,8 @@ const handle = app.getRequestHandler()
 
 const apolloServer = new ApolloServer({
   cache: 'bounded',
-  schema: schema,
+  resolvers: resolvers,
+  typeDefs: typeDefs,
 })
 
 app.prepare().then(async () => {
