@@ -9,11 +9,6 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev, dir: './' })
 const handle = app.getRequestHandler()
 
-// const apolloServer = new ApolloServer({
-//   cache: 'bounded',
-//   schema,
-// })
-
 const apolloServer = new ApolloServer({
   cache: 'bounded',
   schema,
