@@ -9,9 +9,23 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev, dir: './' })
 const handle = app.getRequestHandler()
 
+// const apolloServer = new ApolloServer({
+//   cache: 'bounded',
+//   schema,
+// })
+
 const apolloServer = new ApolloServer({
   cache: 'bounded',
   schema,
+  context: ({ req, res }) => ({
+    // 요청과 응답 객체를 context에 추가
+    req,
+    res,
+    // 추가적으로 다른 데이터도 context로 전달 가능
+    customData: 'example data',
+    // 예를 들어, 인증 정보 등을 추가할 수 있음
+    // user: req.user,  // Express 미들웨어 등에서 설정된 사용자 정보
+  }),
 })
 
 app.prepare().then(async () => {

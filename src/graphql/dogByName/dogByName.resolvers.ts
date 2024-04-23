@@ -1,9 +1,18 @@
+import { DogByNameQueryVariables } from '@/generated/graphql'
 import dogs from './dogs.json' assert { type: 'json' }
+import { Context } from '../type'
 
 export default {
   Query: {
-    dogByName: async (_parent: any, { name }: { name: string }) => {
+    dogByName: async (
+      _parent: any,
+      args: DogByNameQueryVariables,
+      context: Context,
+    ) => {
+      const { name } = args
       const dog = dogs.find(dog => dog.name === name)
+
+      console.log('context: ', context.customData)
 
       console.log('dog: ', dog)
 
