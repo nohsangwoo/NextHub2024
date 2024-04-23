@@ -17,10 +17,10 @@ export const resolvers = mergeResolvers(loadedResolvers)
 
 export const typeDefs2 = mergeTypeDefs([dogByNameTypeDefs])
 export const resolvers2 = mergeResolvers([dogByNameResolvers])
-// export const schema = makeExecutableSchema({
-//   resolvers: resolvers2,
-//   typeDefs: typeDefs2,
-// })
+export const schema = makeExecutableSchema({
+  resolvers: resolvers2,
+  typeDefs: typeDefs2,
+})
 
 export function test() {
   console.log('__dirname: ', __dirname)
@@ -31,9 +31,9 @@ export function test() {
   console.log('0-------------------------0')
   console.log('typeDefs: ', typeDefs)
   console.log('resolvers: ', resolvers)
-  // console.log('0-------------------------0')
-  // console.log('typeDefs2: ', typeDefs2)
-  // console.log('resolvers2: ', resolvers2)
+  console.log('0-------------------------0')
+  console.log('typeDefs2: ', typeDefs2)
+  console.log('resolvers2: ', resolvers2)
 
   // console.log('loadedTypes: ')
 

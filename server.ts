@@ -1,6 +1,13 @@
 import express from 'express'
 import next from 'next'
-import { resolvers, test, typeDefs } from './src/graphqlSchema'
+import {
+  resolvers,
+  resolvers2,
+  schema,
+  test,
+  typeDefs,
+  typeDefs2,
+} from './src/graphqlSchema'
 
 import { ApolloServer } from 'apollo-server-express'
 test()
@@ -10,10 +17,16 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev, dir: './' })
 const handle = app.getRequestHandler()
 
-app.prepare().then(() => {
+const apolloServer = new ApolloServer({
+  cache: 'bounded',
+  schema: schema,
+})
+
+app.prepare().then(async () => {
   const server = express()
 
-  // apolloServer.applyMiddleware({ app: server })
+  await apolloServer.start() // Apollo 서버 시작하기
+  apolloServer.applyMiddleware({ app: server }) // middleware 적용은 서버 시작 후
 
   server.get('/expresstest', (req, res) => {
     res.send('Hello Express')
@@ -26,8 +39,8 @@ app.prepare().then(() => {
   server.listen(port, (err?: any) => {
     if (err) throw err
     console.log(`> Ready on http://localhost:${port}`)
-    // console.log(
-    //   `> GraphQL path is http://localhost:${port}${apolloServer.graphqlPath}`,
-    // )
+    console.log(
+      `> GraphQL path is http://localhost:${port}${apolloServer.graphqlPath}`,
+    )
   })
 })
